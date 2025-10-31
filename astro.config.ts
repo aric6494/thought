@@ -38,7 +38,7 @@ import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://thought-lite.vercel.app",
+  site: "https://www.shuohan.work/",
   trailingSlash: "never",
 
   i18n: {
