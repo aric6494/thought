@@ -34,21 +34,26 @@ import wrapper from "./src/utils/remark/table-wrapper";
 import copy from "./src/utils/code-copy";
 import reading from "./src/utils/remark/reading";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://thought-lite.vercel.app",
   trailingSlash: "never",
+
   i18n: {
     locales: ["en", "zh-cn", "ja"],
-    defaultLocale: "en",
+    defaultLocale: "zh-cn",
     routing: {
       redirectToDefaultLocale: false,
       prefixDefaultLocale: false,
     }
   },
+
   image: {
     service: passthroughImageService(),
   },
+
   markdown: {
     remarkPlugins: [
       [GFM, { singleTilde: false }],
@@ -104,9 +109,11 @@ export default defineConfig({
       ]
     }
   },
+
   vite: {
     plugins: [yaml()]
   },
+
   integrations: [
     svelte(),
     sitemap(),
@@ -120,5 +127,7 @@ export default defineConfig({
       injectReset: "@unocss/reset/normalize.css"
     }),
     icon()
-  ]
+  ],
+
+  adapter: vercel()
 });

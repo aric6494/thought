@@ -1,12 +1,12 @@
 {
-	"title": "ThoughtLite",
+	"title": "笔迹",
 	"prologue": "If you need a website\nthat loads fast and has great SEO, then Astro is for you.",
 	"author": {
 		"name": "Your Name",
 		"email": "hi@your.mail",
 		"link": "https://your.website"
 	},
-	"description": "A modern Astro theme focused on content creation.",
+	"description": "",
 	"copyright": {
 		"type": "CC BY-NC-ND 4.0",
 		"year": "2025"
