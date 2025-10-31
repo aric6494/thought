@@ -23,18 +23,12 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-git diff --cached --quiet
-if %ERRORLEVEL% EQU 0 (
-    echo [INFO] No changes staged; skipping commit.
+echo 2. Committing changes (if any)...
+git commit -m "%COMMIT_MSG%"
+if %ERRORLEVEL% NEQ 0 (
+    echo [INFO] Commit failed or no changes to commit; continuing without commit.
 ) else (
-    echo 2. Committing changes...
-    git commit -m "%COMMIT_MSG%"
-    if %ERRORLEVEL% NEQ 0 (
-        echo [ERROR] Commit failed.
-        pause
-        endlocal
-        exit /b 1
-    )
+    echo [INFO] Commit succeeded.
 )
 
 echo 3. Pushing to remote repository...
