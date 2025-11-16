@@ -35,95 +35,104 @@ import figure from "./src/utils/remark/figure";
 
 import siteConfig from "./site.config";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
-	site: "https://thought-lite.vercel.app",
-	trailingSlash: "never",
-	i18n: {
-		...siteConfig.i18n,
-		routing: {
-			redirectToDefaultLocale: false,
-			prefixDefaultLocale: false
-		}
+  site: "https://www.shuohan.work",
+  trailingSlash: "never",
+
+  i18n: {
+      ...siteConfig.i18n,
+      routing: {
+          redirectToDefaultLocale: false,
+          prefixDefaultLocale: false
+      }
 	},
-	image: {
-		service: passthroughImageService()
+
+  image: {
+      service: passthroughImageService()
 	},
-	markdown: {
-		remarkPlugins: [
-			[GFM, { singleTilde: false }],
-			ins,
-			mark,
-			spoiler,
-			CJK,
-			[CJKStrikethrough, { singleTilde: false }],
-			math,
-			gemoji,
-			footnote,
-			abbr,
-			[table, { colspanWithEmpty: true }],
-			wrapper,
-			directive,
-			ruby,
-			[alerts, { legacyTitle: true }],
-			reading
-		],
-		remarkRehype: {
-			footnoteLabel: null,
-			footnoteLabelTagName: "p",
-			footnoteLabelProperties: {
-				className: ["hidden"]
-			},
-			handlers: {
-				...tableHandler
-			}
-		},
-		rehypePlugins: [
-			ids,
-			[anchor, { behavior: "wrap" }],
-			[links, { target: "_blank", rel: ["nofollow", "noopener", "noreferrer"] }],
-			katex,
-			figure,
-			sectionize
-		],
-		smartypants: false,
-		shikiConfig: {
-			themes: {
-				light: {
-					...githubLight,
-					colorReplacements: {
-						"#fff": "var(--block-color)"
-					}
-				},
-				dark: "dark-plus"
-			},
-			transformers: [
-				copy({
-					duration: 1500
-				})
-			]
-		}
+
+  markdown: {
+      remarkPlugins: [
+          [GFM, { singleTilde: false }],
+          ins,
+          mark,
+          spoiler,
+          CJK,
+          [CJKStrikethrough, { singleTilde: false }],
+          math,
+          gemoji,
+          footnote,
+          abbr,
+          [table, { colspanWithEmpty: true }],
+          wrapper,
+          directive,
+          ruby,
+          [alerts, { legacyTitle: true }],
+          reading
+      ],
+      remarkRehype: {
+          footnoteLabel: null,
+          footnoteLabelTagName: "p",
+          footnoteLabelProperties: {
+              className: ["hidden"]
+          },
+          handlers: {
+              ...tableHandler
+          }
+      },
+      rehypePlugins: [
+          ids,
+          [anchor, { behavior: "wrap" }],
+          [links, { target: "_blank", rel: ["nofollow", "noopener", "noreferrer"] }],
+          katex,
+          figure,
+          sectionize
+      ],
+      smartypants: false,
+      shikiConfig: {
+          themes: {
+              light: {
+                  ...githubLight,
+                  colorReplacements: {
+                      "#fff": "var(--block-color)"
+                  }
+              },
+              dark: "dark-plus"
+          },
+          transformers: [
+              copy({
+                  duration: 1500
+              })
+          ]
+      }
 	},
-	vite: {
-		// Workaround for https://github.com/withastro/astro/issues/14692
-		optimizeDeps: {
-			include: ["picocolors"]
-		},
-		// @ts-expect-error
-		plugins: [yaml()]
+
+  vite: {
+      // Workaround for https://github.com/withastro/astro/issues/14692
+      optimizeDeps: {
+          include: ["picocolors"]
+      },
+      // @ts-expect-error
+      plugins: [yaml()]
 	},
-	integrations: [
-		svelte(),
-		sitemap(),
-		swup({
-			globalInstance: true,
-			preload: false,
-			smoothScrolling: false,
-			progress: true
-		}),
-		UnoCSS({
-			injectReset: "@unocss/reset/normalize.css"
-		}),
-		icon()
-	]
+
+  integrations: [
+      svelte(),
+      sitemap(),
+      swup({
+          globalInstance: true,
+          preload: false,
+          smoothScrolling: false,
+          progress: true
+      }),
+      UnoCSS({
+          injectReset: "@unocss/reset/normalize.css"
+      }),
+      icon()
+	],
+
+  adapter: vercel()
 });
