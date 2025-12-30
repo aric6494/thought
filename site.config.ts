@@ -2,7 +2,7 @@ import siteConfig from "./src/utils/config";
 
 const config = siteConfig({
 	title: "笔迹",
-	prologue: "不完美、谦逊、乐观与个性",
+	prologue: "勇气、不完美、谦逊、乐观与个性",
 	author: {
 		name: "aric",
 		email: "hgdihs670@gmail.com",
