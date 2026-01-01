@@ -11,7 +11,7 @@ const config = siteConfig({
 	description: "",
 	copyright: {
 		type: "CC BY-NC-ND 4.0",
-		year: "2025"
+		year: "2025-2026"
 	},
 	i18n: {
 		locales: ["en", "zh-cn"],
