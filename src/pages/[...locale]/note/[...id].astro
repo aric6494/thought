@@ -9,6 +9,7 @@ import TOC from "$components/TOC.astro";
 import Position from "$components/Position.astro";
 import Sensitive from "$components/Sensitive.svelte";
 import i18nit from "$i18n";
+import Giscus from "$components/Giscus.svelte";
 
 export async function getStaticPaths() {
 	// Get all notes excluding drafts
@@ -110,5 +111,22 @@ const t = i18nit(locale);
 		</Sensitive>
 
 		<Position {locale} />
+		
+		<script src="https://giscus.app/client.js"
+        data-repo="aric6494/Giscus"
+        data-repo-id="R_kgDORAygxw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDORAygx84C1ZZ_"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="noborder_light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+		</script>
+
 	</main>
 </Base>

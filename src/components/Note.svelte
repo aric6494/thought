@@ -3,7 +3,7 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { onMount, type Snippet } from "svelte";
 import { flip } from "svelte/animate";
 import { fade } from "svelte/transition";
-import { monolocale } from "$config";
+import config, { monolocale } from "$config";
 import Time from "$utils/time";
 import i18nit from "$i18n";
 
@@ -62,7 +62,7 @@ let filtered: any[] = $derived.by(() => {
 });
 
 // Calculate pagination
-const size: number = 20;
+const size: number = config.pagination?.note || 15;
 let pages: number = $derived(Math.ceil(filtered.length / size));
 
 // Ensure page is within valid range
