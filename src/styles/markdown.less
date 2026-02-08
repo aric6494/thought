@@ -132,14 +132,17 @@
 	}
 
 	blockquote {
-		border-left: 4px solid var(--shadow-color);
-		padding-left: 1em;
-
-		p {
-			margin: 0;
-			padding-bottom: 0.5em;
-		}
+  		border-left: 4px solid var(--shadow-color);
+  		padding-left: 1em;
+  		color: rgba(0, 0, 0, 0.6); // 字体颜色变淡（黑色 60% 不透明）
+  
+  		p {
+    		margin: 0;
+    		padding-bottom: 0.5em;
+    		color: inherit;
+  		}
 	}
+
 
 	code {
 		border-radius: 0.3em;
