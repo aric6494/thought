@@ -14,7 +14,7 @@ const config = siteConfig({
 		year: "2025-2026"
 	},
 	i18n: {
-		locales: ["en", "zh-cn"],
+		locales: ["zh-cn"],
 		defaultLocale: "zh-cn"
 	},
 	pagination: {
