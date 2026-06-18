@@ -9,6 +9,7 @@ import Position from "$components/Position.astro";
 import Icon from "$components/Icon.svelte";
 import Sensitive from "$components/Sensitive.svelte";
 import i18nit from "$i18n";
+import Comment from "$components/Comment.svelte";
 
 export async function getStaticPaths() {
 	// Get all notes excluding drafts
@@ -84,7 +85,7 @@ const t = i18nit(locale);
 			</div>
 			<hr class="border-b border-weak" />
 		</header>
-
+		
 		<Sensitive {locale} back={getRelativeLocaleUrl(locale, "/note")} sensitive={note.data.sensitive} client:load>
 			<div class="contents">
 				<div class="flex gap-5">
@@ -95,5 +96,23 @@ const t = i18nit(locale);
 		</Sensitive>
 
 		<Position {locale} toc={note.data.toc} series={!!note.data.series} />
+		
+		<script src="https://giscus.app/client.js"
+        data-repo="aric6494/Giscus"
+        data-repo-id="R_kgDORAygxw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDORAygx84C1ZZ_"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="Fro"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+		</script>
+
+		
 	</main>
 </Base>

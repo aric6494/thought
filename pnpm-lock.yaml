@@ -131,6 +131,9 @@ importers:
       temporal-polyfill:
         specifier: ^0.3.2
         version: 0.3.2
+      twikoo:
+        specifier: ^1.7.12
+        version: 1.7.12
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -5120,6 +5123,9 @@ packages:
     resolution: {integrity: sha512-mdoNxBC/cSQObGGVQ5Bpn5i+yv7j68gk3Nfm3wFjcJg3Z0Mix9jzAFfP12prmm5eVGmDKtp0yyArrs0Q+8gZHg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
+
+  twikoo@1.7.12:
+    resolution: {integrity: sha512-6bZgOTu1C1TZvQM56dEmnwSmFcPPOLLpg9M6nVuItvhMpFuEhxUgI21dtk67xA6JKaKnozp7qML+4zrtnmw6aQ==}
 
   typed-array-buffer@1.0.3:
     resolution: {integrity: sha512-nAYYwfY3qnzX30IkA6AQZjVbtK6duGontcQm1WSG1MD94YLqK0515GNApXkoxKOWMusVssAHWLh9SeaoefYFGw==}
@@ -11547,6 +11553,8 @@ snapshots:
       esbuild: 0.28.0
     optionalDependencies:
       fsevents: 2.3.3
+
+  twikoo@1.7.12: {}
 
   typed-array-buffer@1.0.3:
     dependencies:

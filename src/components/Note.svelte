@@ -142,6 +142,7 @@ $effect(() => {
 
 		<Pagination bind:pages bind:page />
 	</article>
+	
 
 	<aside class="sm:basis-50 shrink-0 flex flex-col gap-5">
 		<section>

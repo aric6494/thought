@@ -79,6 +79,7 @@
 		"svelte": "^5.55.9",
 		"tailwindcss": "^4.3.0",
 		"temporal-polyfill": "^0.3.2",
+		"twikoo": "^1.7.12",
 		"typescript": "^6.0.3",
 		"unified": "^11.0.5"
 	},
