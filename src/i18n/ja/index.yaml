@@ -1,21 +1,14 @@
 about:
   introduction: ○○紹介
-  roll: ○○連結
-feed:
-  address: 購読アドレス
-  copy:
-    failure: 複写に失敗しました。購読アドレスを手動で複写してください。
-    name: 複写
-    success: 購読アドレスをクリップボードに複写しました！
-  description: このページは Atom 形式の記事購読ソースです。
-  last: 最終更新
-  usage: 対応しているリーダーで現在のアドレスを追加して、このコンテンツを購読し、最新の記事更新を適時に取得できます。
-  visit: これはフィードページです。完全なウェブサイト体験のために {title} を訪問してください。
+  linkroll: ○○連結
+contents: 目次
 home:
   heatmap:
     empty: 無字
-    jotting: 随筆 {count} 件
-    note: 文記 {count} 件
+    jotting:
+      other: 随筆 {count} 葉
+    note:
+      other: 文記 {count} 篇
   latest: 最新記事
   prefaces: 序文歴史
 jotting:
@@ -29,15 +22,14 @@ navigation:
   note: 文記
   policy: 規約
   preface: 序文
-  subscription: 購読
 note:
-  contents: 目次
   empty: 文記がありません
   series: 系列
   tag: 付札
   top: 至頂
 read:
-  words: '{words} 字'
+  words:
+    other: '{count} 文字'
 sensitive:
   back: リストに戻ります
   continue: 承知いたしました、読み続けます
@@ -48,5 +40,6 @@ sensitive:
   icon: 敏感内容を含む
   title: 内容警告
   warning: この記事があなたの精神的健康に影響を与える可能性がある場合は、すぐに離れてください！
-statistics: '{words} 文字を書いた'
+statistics:
+  other: '{count} 文字を書いた'
 theme: 'テーマ: ThoughtLite'

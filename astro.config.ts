@@ -1,138 +1,223 @@
 // @ts-check
-import { defineConfig, passthroughImageService } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import yaml from "@rollup/plugin-yaml";
+import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import UnoCSS from "unocss/astro";
+import tailwindcss from "@tailwindcss/vite";
 import swup from "@swup/astro";
-import icon from "astro-icon";
-import githubLight from "shiki/themes/github-light.mjs";
 
 import GFM from "remark-gfm";
 import ins from "remark-ins";
 import mark from "remark-flexible-markers";
+import spoiler from "@tuyuritio/remark-spoiler";
 import CJK from "remark-cjk-friendly";
 import CJKStrikethrough from "remark-cjk-friendly-gfm-strikethrough";
+import ruby from "@tuyuritio/remark-ruby";
+import attr from "@tuyuritio/remark-attribute";
 import math from "remark-math";
 import gemoji from "remark-gemoji";
 import footnote from "remark-footnotes-extra";
+import abbr from "@tuyuritio/remark-abbreviation";
 import { remarkExtendedTable as table, extendedTableHandlers as tableHandler } from "remark-extended-table";
-import directive from "remark-directive";
-import ruby from "remark-ruby-directive";
-import alerts from "remark-github-blockquote-alert";
+import alerts from "@tuyuritio/remark-github-alert";
 import { rehypeHeadingIds as ids } from "@astrojs/markdown-remark";
 import anchor from "rehype-autolink-headings";
 import links from "rehype-external-links";
 import katex from "rehype-katex";
+import figure from "@tuyuritio/rehype-image-figure";
+import wrapper from "@tuyuritio/rehype-table-wrapper";
 import sectionize from "@hbsnow/rehype-sectionize";
+import copy from "@tuyuritio/shiki-code-copy";
 
-import spoiler from "./src/utils/remark/spoiler";
-import abbr from "./src/utils/remark/abbr";
-import wrapper from "./src/utils/remark/table-wrapper";
-import copy from "./src/utils/code-copy";
-import reading from "./src/utils/remark/reading";
-import figure from "./src/utils/remark/figure";
+import reading from "./src/lib/reading";
 
 import siteConfig from "./site.config";
+import ZeoSevenFonts from "./src/fonts/zeo-seven-fonts";
 
 import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.shuohan.work",
-  trailingSlash: "never",
+	site: "https://www.shuohan.work",
+	trailingSlash: "never",
 
-  i18n: {
-      ...siteConfig.i18n,
-      routing: {
-          redirectToDefaultLocale: false,
-          prefixDefaultLocale: false
-      }
+	i18n: {
+		...siteConfig.i18n,
+		routing: {
+			redirectToDefaultLocale: false,
+			prefixDefaultLocale: false
+		}
 	},
 
-  image: {
-      service: passthroughImageService()
+	markdown: {
+		remarkPlugins: [
+			[GFM, { singleTilde: false }],
+			ins,
+			mark,
+			spoiler,
+			CJK,
+			[CJKStrikethrough, { singleTilde: false }],
+			ruby,
+			attr,
+			math,
+			gemoji,
+			footnote,
+			abbr,
+			[table, { colspanWithEmpty: true }],
+			[alerts, { typeFormat: "capitalize" }],
+			reading
+		],
+		remarkRehype: {
+			footnoteLabel: null,
+			footnoteLabelTagName: "p",
+			footnoteLabelProperties: {
+				className: ["hidden"]
+			},
+			handlers: {
+				...tableHandler
+			}
+		},
+		rehypePlugins: [
+			ids,
+			[anchor, { behavior: "wrap" }],
+			[links, { target: "_blank", rel: ["nofollow", "noopener", "noreferrer"] }],
+			katex,
+			figure,
+			wrapper,
+			sectionize
+		],
+		smartypants: false,
+		shikiConfig: {
+			themes: {
+				light: "github-light",
+				dark: "dark-plus"
+			},
+			transformers: [copy({ duration: 1500 })]
+		}
 	},
 
-  markdown: {
-      remarkPlugins: [
-          [GFM, { singleTilde: false }],
-          ins,
-          mark,
-          spoiler,
-          CJK,
-          [CJKStrikethrough, { singleTilde: false }],
-          math,
-          gemoji,
-          footnote,
-          abbr,
-          [table, { colspanWithEmpty: true }],
-          wrapper,
-          directive,
-          ruby,
-          [alerts, { legacyTitle: true }],
-          reading
-      ],
-      remarkRehype: {
-          footnoteLabel: null,
-          footnoteLabelTagName: "p",
-          footnoteLabelProperties: {
-              className: ["hidden"]
-          },
-          handlers: {
-              ...tableHandler
-          }
-      },
-      rehypePlugins: [
-          ids,
-          [anchor, { behavior: "wrap" }],
-          [links, { target: "_blank", rel: ["nofollow", "noopener", "noreferrer"] }],
-          katex,
-          figure,
-          sectionize
-      ],
-      smartypants: false,
-      shikiConfig: {
-          themes: {
-              light: {
-                  ...githubLight,
-                  colorReplacements: {
-                      "#fff": "var(--block-color)"
-                  }
-              },
-              dark: "dark-plus"
-          },
-          transformers: [
-              copy({
-                  duration: 1500
-              })
-          ]
-      }
+	vite: {
+		// @ts-expect-error
+		plugins: [yaml(), tailwindcss()]
 	},
 
-  vite: {
-      // Workaround for https://github.com/withastro/astro/issues/14692
-      optimizeDeps: {
-          include: ["picocolors"]
-      },
-      // @ts-expect-error
-      plugins: [yaml()]
-	},
-
-  integrations: [
-      svelte(),
-      sitemap(),
-      swup({
-          globalInstance: true,
-          preload: false,
-          smoothScrolling: false,
-          progress: true
-      }),
-      UnoCSS({
-          injectReset: "@unocss/reset/normalize.css"
-      }),
-      icon()
+	integrations: [
+		svelte(),
+		mdx(),
+		sitemap(),
+		swup({
+			globalInstance: true,
+			preload: false,
+			smoothScrolling: false,
+			progress: true
+		})
 	],
 
-  adapter: vercel()
+	fonts: [
+		{
+			name: "Noto Serif",
+			provider: fontProviders.local(),
+			optimizedFallbacks: false,
+			fallbacks: ["Noto Serif", "Georgia", "Times New Roman", "serif"],
+			cssVariable: "--font-noto-serif",
+			options: {
+				variants: [
+					{
+						src: ["./src/fonts/NotoSerif-Regular.ttf"],
+						weight: 400,
+						style: "normal"
+					},
+					{
+						src: ["./src/fonts/NotoSerif-Bold.ttf"],
+						weight: 700,
+						style: "normal"
+					}
+				]
+			}
+		},
+		{
+			name: "Noto Serif SC",
+			provider: fontProviders.local(),
+			optimizedFallbacks: false,
+			fallbacks: ["Noto Serif SC", "Source Han Serif SC", "STSong", "Songti SC", "SimSun", "serif"],
+			cssVariable: "--font-noto-serif-sc",
+			options: {
+				variants: [
+					{
+						src: ["./src/fonts/NotoSerifSC-Regular.ttf"],
+						weight: 400,
+						style: "normal"
+					},
+					{
+						src: ["./src/fonts/NotoSerifSC-Bold.ttf"],
+						weight: 700,
+						style: "normal"
+					}
+				]
+			}
+		},
+		{
+			name: "Noto Serif JP",
+			provider: fontProviders.local(),
+			optimizedFallbacks: false,
+			fallbacks: ["Noto Serif JP", "Source Han Serif JP", "Hiragino Mincho ProN", "MS Mincho", "serif"],
+			cssVariable: "--font-noto-serif-jp",
+			options: {
+				variants: [
+					{
+						src: ["./src/fonts/NotoSerifJP-Regular.ttf"],
+						weight: 400,
+						style: "normal"
+					},
+					{
+						src: ["./src/fonts/NotoSerifJP-Bold.ttf"],
+						weight: 700,
+						style: "normal"
+					}
+				]
+			}
+		},
+		{
+			name: "Playwrite MX",
+			provider: fontProviders.local(),
+			fallbacks: ["Apple Chancery", "Segoe Script", "cursive"],
+			cssVariable: "--font-playwrite-mx",
+			options: {
+				variants: [
+					{
+						src: ["./src/fonts/PlaywriteMX-Regular.ttf"],
+						weight: 100,
+						style: "normal"
+					}
+				]
+			}
+		},
+		{
+			name: "Maple Mono NF CN",
+			provider: ZeoSevenFonts(),
+			optimizedFallbacks: false,
+			fallbacks: [
+				"Maple Mono NF CN",
+				"Maple Mono NF",
+				"Maple Mono CN",
+				"Maple Mono",
+				"Consolas",
+				"Monaco",
+				"Cascadia Code",
+				"Courier New",
+				"monospace"
+			],
+			cssVariable: "--font-maple-mono-nf-cn"
+		},
+		{
+			name: "The Peak Font Plus",
+			provider: ZeoSevenFonts(),
+			optimizedFallbacks: false,
+			fallbacks: ["Georgia", "STSong", "serif"],
+			cssVariable: "--font-the-peak-font-plus"
+		}
+	],
+
+	adapter: vercel()
 });

@@ -1,23 +1,16 @@
 about:
   introduction: Introduction
-  roll: Link Roll
-feed:
-  address: Subscription address
-  copy:
-    failure: Copy failed, please copy the subscription address manually.
-    name: Copy
-    success: Subscription address copied to clipboard!
-  description: This page is an Atom format content subscription source.
-  last: Last updated
-  usage: >-
-    You can add the current address in any supported reader to subscribe to this
-    content and get the latest content updates in time.
-  visit: This is the feed page. Visit {title} for the full website experience.
+  linkroll: Linkroll
+contents: Contents
 home:
   heatmap:
     empty: No words
-    jotting: '{count} jottings'
-    note: '{count} notes'
+    jotting:
+      one: '{count} jotting'
+      other: '{count} jottings'
+    note:
+      one: '{count} note'
+      other: '{count} notes'
   latest: Latest
   prefaces: Prefaces
 jotting:
@@ -31,15 +24,15 @@ navigation:
   note: Note
   policy: Policy
   preface: Preface
-  subscription: Subscription
 note:
-  contents: Contents
   empty: No notes available
   series: Series
   tag: Tag
   top: To Top
 read:
-  words: '{words} words'
+  words:
+    one: '{count} word'
+    other: '{count} words'
 sensitive:
   back: Return to list
   continue: I understand, continue reading
@@ -54,5 +47,7 @@ sensitive:
   icon: Contains sensitive content
   title: Content Warning
   warning: If this content might affect your mental health, please leave immediately!
-statistics: Wrote {words} words
+statistics:
+  one: Wrote {count} word
+  other: Wrote {count} words
 theme: 'Theme: ThoughtLite'

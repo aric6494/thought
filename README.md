@@ -8,6 +8,7 @@
     <p>
         <a href="https://github.com/tuyuritio/astro-theme-thought-lite/releases/latest"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/tuyuritio/astro-theme-thought-lite"></a>
         <a href="https://raw.githubusercontent.com/tuyuritio/astro-theme-thought-lite/refs/heads/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/tuyuritio/astro-theme-thought-lite"></a>
+        <a href="https://deepwiki.com/tuyuritio/astro-theme-thought-lite"><img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg"></a>
     </p>
     <p>A modern <a href="https://astro.build/">Astro</a> theme, focused on content creation 🌟</p>
     <p>
@@ -21,7 +22,7 @@
 > - `main` branch✅: Static build, can be deployed on any static hosting platform.
 > - `cloudflare` branch: Enables built-in comment system, only deployable on Cloudflare.
 
-🎬 **Live Demo**: [Vercel](https://thought-lite.vercel.app/)
+🎬 **Live Demo**: [Vercel](https://thought-lite.vercel.app)
 
 ## ✨ Features
 
@@ -61,15 +62,11 @@ pnpm dev
 
 ## 🔧 Configuration
 
-Customize site configuration and internationalization (i18n) by modifying the following files:
+Related theme configuration can be found in the following documents:
 
-- `.env`
-- `astro.config.ts`
-- `site.config.ts`
-
-For basic configuration, refer to the [Site Configuration Guide](src/content/note/en/configuration.md).
-
-For internationalization configuration, refer to the [Internationalization Configuration Guide](src/content/note/en/internationalization.md).
+- [Astro Configuration Reference](https://docs.astro.build/en/reference/configuration-reference/)
+- [Site Configuration Guide](https://thought-lite.vercel.app/note/configuration)
+- [Internationalization Configuration Guide](https://thought-lite.vercel.app/note/internationalization)
 
 ## 💻 Commands
 
@@ -111,12 +108,12 @@ pnpm install
 
 Content creation is centralized in the `src/content` directory, mainly including:
 
-- `note` - Notes, focused on carefully crafted and detailed long-form works
-- `jotting` - Jottings, lightweight and immediate content recording
-- `preface` - Preface, displayed on the homepage as the first impression
-- `information` - Information, containing various descriptive content
+- `note` - Focused on carefully crafted and detailed long-form works
+- `jotting` - Lightweight and immediate content recording
+- `preface` - Displayed on the homepage as the first impression
+- `information` - Containing various descriptive content
 
-For details, refer to the [Content Creation Guide](src/content/note/en/content.md).
+For details, refer to the [Content Creation Guide](https://thought-lite.vercel.app/note/content).
 
 ## 🤝 Contributing
 
@@ -125,7 +122,8 @@ All kinds of contributions are welcome and appreciated!
 - Help promote the project or assist other users
 - Report [issues](https://github.com/tuyuritio/astro-theme-thought-lite/issues) or suggest new features
 - Improve documentation or help with internationalization (i18n)
-- Submit code contributions - see the [Code Contribution Guide](CONTRIBUTING.md) for more details
+- Submit code contributions
+- See [Contribution Guide](CONTRIBUTING.md) for more information
 
 ## 🙏 Acknowledgments
 
@@ -134,13 +132,11 @@ All kinds of contributions are welcome and appreciated!
 - **Core Framework** - [Astro](https://astro.build/)
 - **Core Language** - [TypeScript](https://www.typescriptlang.org/)
 - **UI Components** - [Svelte](https://svelte.dev/)
-- **CSS Engine** - [UnoCSS](https://unocss.dev/)
-- **CSS Preprocessor** - [Less](https://lesscss.org/)
+- **CSS Engine** - [Tailwind CSS](https://tailwindcss.com/)
 - **Icons** - [Iconify](https://iconify.design/)
 - **Fonts** - [Google Fonts](https://fonts.google.com/) | [ZeoSeven Fonts](https://fonts.zeoseven.com/)
 - **Image Viewer** - [Medium Zoom](https://github.com/francoischalifour/medium-zoom)
 - **SPA Transitions** - [Swup](https://swup.js.org/)
-- **Time Handling** - [Luxon](https://moment.github.io/luxon/)
 - **Code Quality** - [Biome](https://biomejs.dev/)
 - **Static Deployment** - [Vercel](https://vercel.com/)
 
@@ -148,7 +144,7 @@ All kinds of contributions are welcome and appreciated!
 
 - [Astro Sphere](https://github.com/markhorn-dev/astro-sphere)
 - [astro-vitesse](https://github.com/adrian-ub/astro-vitesse)
-- [Miniblog](https://github.com/nicholasdly/miniblog)
+- [Miniblog v1](https://github.com/nicholasdly/miniblog/tree/v1)
 - [AstroPaper with I18n](https://github.com/yousef8/astro-paper-i18n)
 
 ## 📜 License
